@@ -1,2 +1,66 @@
-body{
-}
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --bg: #000000;
+      --text: #e5e7eb;
+      --card: rgba(255,255,255,0.06);
+      --accent: #8c45ff;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --card: rgba(0,0,0,0.05);
+      --accent: #6d28d9;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.4s;
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      border: 1px solid var(--accent);
+      border-radius: 40px;
+      padding: 14px 30px;
+      display: flex;
+      gap: 25px;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .resume-btn {
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .resume-btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
