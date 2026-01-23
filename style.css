@@ -130,3 +130,33 @@
       background: var(--accent);
       color: #000;
     }
+
+    
+    /* ABOUT */
+    #about {
+      text-align: center;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .about-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .name-highlight {
+      color: #3b82f6;
+      font-weight: 900;
+    }
