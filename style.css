@@ -207,5 +207,9 @@
       background: var(--accent);
       color: #000;
     }
+
+    . semester-button .btn{
+       padding: 8px 16px;
+     }
     
 
