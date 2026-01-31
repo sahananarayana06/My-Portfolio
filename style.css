@@ -264,6 +264,18 @@
       gap: 30px;
     }
 
+   .project-card {
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.02)
+      );
+      border-radius: 22px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(14px);
+      transition: 0.4s;
+    }
 
 
 
