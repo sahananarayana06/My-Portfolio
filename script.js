@@ -1,6 +1,5 @@
 AOS.init();
 
-
 // Semester Details Logic
 function showSemester(sem, btn) {
       const details = document.getElementById('semester-details');
