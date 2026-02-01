@@ -282,5 +282,11 @@
       box-shadow: 0 0 40px rgba(140,69,255,0.5);
     }
 
+    .project-img {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 18px;
+    }
+
 
 
