@@ -31,3 +31,21 @@ function showSemester(sem, btn) {
 
     showSemester(5, document.querySelector('.btn.active'));
 
+
+// Show more/less functionality for project descriptions
+document.querySelectorAll('.show-more').forEach(button => {
+  button.addEventListener('click', function() {
+    const desc = this.previousElementSibling; // The p.project-desc
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    if (desc.classList.contains('truncated')) {
+      desc.classList.remove('truncated');
+      this.textContent = 'See less';
+      this.setAttribute('aria-expanded', 'true');
+    } else {
+      desc.classList.add('truncated');
+      this.textContent = 'See more';
+      this.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
