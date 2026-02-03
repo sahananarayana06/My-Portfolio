@@ -310,5 +310,7 @@
           color: var(--accent);
           cursor: pointer;
           font-size: 0.85rem;
+          font-family: inherit;
+          text-decoration: underline;
       }
 
