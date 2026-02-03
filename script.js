@@ -49,3 +49,6 @@ document.querySelectorAll('.show-more').forEach(button => {
   });
 });
 
+// Contact Form Handler
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
