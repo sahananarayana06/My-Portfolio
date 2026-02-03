@@ -307,5 +307,8 @@
           padding: 0;
           display: inline-block;
           margin: 10px 0;
+          color: var(--accent);
+          cursor: pointer;
+          font-size: 0.85rem;
       }
 
