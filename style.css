@@ -287,10 +287,12 @@
       border-radius: 16px;
       margin-bottom: 18px;
     }
+
     .project-desc {
       font-size: 0.9rem;
       opacity: 0.85;
     }
+
     .project-desc.truncated {
       display: -webkit-box;
       -webkit-line-clamp:2 ;
@@ -298,4 +300,12 @@
       overflow: hidden;
       line-clamp:2 ;
     }
+
+    .show-more {
+          background: transparent;
+          border: none;
+          padding: 0;
+          display: inline-block;
+          margin: 10px 0;
+      }
 
