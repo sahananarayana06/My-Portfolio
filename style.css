@@ -322,3 +322,7 @@
     .tech-stack img {
       width: 34px;
     }
+
+    .project-links {
+      display: flex;
+    }
