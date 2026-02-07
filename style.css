@@ -316,5 +316,6 @@
     .tech-stack {
       display: flex;
       gap: 12px;
+      margin: 15px 0;
     }
 
