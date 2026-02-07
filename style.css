@@ -313,3 +313,8 @@
           text-decoration: underline;
       }
 
+    .tech-stack {
+      display: flex;
+      gap: 12px;
+    }
+
