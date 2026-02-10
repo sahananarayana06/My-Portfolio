@@ -328,3 +328,8 @@
       gap: 15px;
       align-items: center;
     }
+
+    .project-links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
