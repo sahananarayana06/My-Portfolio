@@ -333,3 +333,10 @@
       color: var(--accent);
       text-decoration: none;
     }
+
+    /* CONTACT */
+    .contact-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 15px;
+    }
