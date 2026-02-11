@@ -340,3 +340,8 @@
       text-decoration: none;
       margin-right: 15px;
     }
+
+    form {
+      max-width: 420px;
+      margin-top: 25px;
+    }
