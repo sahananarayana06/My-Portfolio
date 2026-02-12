@@ -345,3 +345,12 @@
       max-width: 420px;
       margin-top: 25px;
     }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
