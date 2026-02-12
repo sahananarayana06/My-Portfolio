@@ -354,3 +354,11 @@
       border: none;
       outline: none;
     }
+
+        /* CONTACT SECTION */
+    .contact-sub {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      opacity: 0.8;
+      text-align: center;
+    }
