@@ -53,3 +53,9 @@ document.querySelectorAll('.show-more').forEach(button => {
 // Contact Form Handler
 document.getElementById('contact-form').addEventListener('submit', function(event) {
   event.preventDefault(); // Prevent default form submission
+      
+  // Get form values
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
