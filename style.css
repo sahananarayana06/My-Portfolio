@@ -368,3 +368,11 @@
       color: var(--accent);
       font-weight: 600;
     }
+
+    .contact-cards {
+      margin: 50px 0;
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
