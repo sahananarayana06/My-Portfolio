@@ -363,3 +363,8 @@
       opacity: 0.8;
       text-align: center;
     }
+ 
+    .contact-sub span {
+      color: var(--accent);
+      font-weight: 600;
+    }
