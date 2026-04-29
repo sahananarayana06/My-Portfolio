@@ -33,7 +33,6 @@ function showSemester(sem, btn) {
 
     showSemester(5, document.querySelector('.btn.active'));
 
-
 // Show more/less functionality for project descriptions
 document.querySelectorAll('.show-more').forEach(button => {
   button.addEventListener('click', function() {
