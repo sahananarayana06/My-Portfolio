@@ -24,6 +24,7 @@ function showSemester(sem, btn) {
         case 4:
           content = `<h3>Semester 4</h3><br><p><strong>CGPA:</strong> <span class="cgpa-value">9.24</span></p><ul><li>Python Programming</li><li>Computer Multimedia & Animation</li><li>Operating System Concepts</li><li>India and Indian Constitution</li></ul><br><p><strong>Mini Project:</strong><ul><li>Finance Manager</li></ul></p>`;
           break;
+
         case 5:
           content = `<h3>Semester 5 (Current)</h3><br><p><strong>CGPA:</strong> <span class="ongoing">Ongoing</span></p><ul><li>Design and Analysis of Algorithms</li><li>R programming</li><li>Software Engineering</li><li>Cloud Computing</li></ul><br><p><strong>Mini Project:</strong><ul><li>Portfolio Website</li><li>E-Commerce Website</li><li>Online Notes Sharing System</li></ul></p>`;
           break;
