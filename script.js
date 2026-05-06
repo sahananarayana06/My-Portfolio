@@ -16,6 +16,7 @@ function showSemester(sem, btn) {
         case 2:
           content = `<h3>Semester 2</h3><br><p><strong>CGPA:</strong> <span class="cgpa-value">9.26</span></p><ul><li>Data Structures</li><li>OOP Concepts</li><li>Public Finance</li></ul><br><p><strong>Mini Project:</strong> <ul><li>Stack-based "Browser History" Simulator</li></ul></p>`;
           break;
+
         case 3:
           content = `<h3>Semester 3</h3><br><p><strong>CGPA:</strong> <span class="cgpa-value">9.28</span></p><ul><li>Database Management Systems</li><li>C# and DOT NET Framework</li><li>Computer Communication and  Networks</li></ul><br><p><strong>Mini Project:</strong><ul><li>Student Management System using C# and SQL Server</li></ul></p>`;
           break;
