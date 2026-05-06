@@ -20,6 +20,7 @@ function showSemester(sem, btn) {
         case 3:
           content = `<h3>Semester 3</h3><br><p><strong>CGPA:</strong> <span class="cgpa-value">9.28</span></p><ul><li>Database Management Systems</li><li>C# and DOT NET Framework</li><li>Computer Communication and  Networks</li></ul><br><p><strong>Mini Project:</strong><ul><li>Student Management System using C# and SQL Server</li></ul></p>`;
           break;
+
         case 4:
           content = `<h3>Semester 4</h3><br><p><strong>CGPA:</strong> <span class="cgpa-value">9.24</span></p><ul><li>Python Programming</li><li>Computer Multimedia & Animation</li><li>Operating System Concepts</li><li>India and Indian Constitution</li></ul><br><p><strong>Mini Project:</strong><ul><li>Finance Manager</li></ul></p>`;
           break;
