@@ -1,7 +1,7 @@
 AOS.init();
 
 // Semester Details Logic
-function showSemester(sem, btn) {
+function showSemester(sem, bt) {
       const details = document.getElementById('semester-details');
       document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
       if(btn) btn.classList.add('active');
