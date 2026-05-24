@@ -16,7 +16,6 @@
       --card: rgba(0,0,0,0.05);
       --accent: #6d28d9;
     }
-
     body {
       background: var(--bg);
       color: var(--text);
