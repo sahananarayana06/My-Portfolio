@@ -5,7 +5,7 @@ function showSemester(sem, btn) {
       const details = document.getElementById('semester-details');
       document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
       if(btn) btn.classList.add('active');
-     
+    
       let content = '';
     
       switch(sem) {
