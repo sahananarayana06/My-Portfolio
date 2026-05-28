@@ -7,7 +7,7 @@ function showSemester(sem, btn) {
       if(btn) btn.classList.add('active');
     
       let content = '';
-    
+   
       switch(sem) {
         case 1:
           content = `<h3>Semester 1</h3><br><p><strong>CGPA:</strong> <span class="cgpa-value">9.17</span></p><ul><li>Fundamentals of Computers</li><li>Programming in C</li><li>Mathematics</li><li>Environmental Studies</li></ul><br><p><strong>Mini Project:</strong> <ul><li>TO-Do List in C</li></ul></p>`;
