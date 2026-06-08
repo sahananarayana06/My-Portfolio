@@ -4,7 +4,7 @@
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
-    :root {
+    :root { 
       --bg: #000000;
       --text: #e5e7eb;
       --card: rgba(255,255,255,0.06);
