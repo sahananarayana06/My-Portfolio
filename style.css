@@ -601,3 +601,49 @@ footer {
   height: 100vh;
   z-index: -1;
 }
+
+/* Full-page fixed background container */
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none; /* Allows clicks to pass through to elements below */
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: float 10s ease-in-out infinite alternate;
+}
+
+.circle-1 {
+  width: 400px;
+  height: 400px;
+  background: #8b5cf6; /* Matching purple glow */
+  top: 10%;
+  left: 10%;
+}
+
+.circle-2 {
+  width: 450px;
+  height: 450px;
+  background: #3b82f6; /* Accent blue glow */
+  bottom: 10%;
+  right: 10%;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-60px) scale(1.15);
+  }
+}
