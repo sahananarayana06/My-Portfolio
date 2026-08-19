@@ -79,3 +79,12 @@ document.querySelectorAll('.show-more').forEach(button => {
 });
 
 emailjs.init('9pkuBI_6vudizlI6E');
+
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#8b5cf6" },
+    line_linked: { enable: true, distance: 150, color: "#8b5cf6", opacity: 0.3, width: 1 },
+    move: { enable: true, speed: 2 }
+  }
+});
