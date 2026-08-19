@@ -622,20 +622,21 @@ footer {
   animation: float 10s ease-in-out infinite alternate;
 }
 
+/* Decreased size for smaller, subtle glowing background orbs */
 .circle-1 {
-  width: 400px;
-  height: 400px;
-  background: #8b5cf6; /* Matching purple glow */
-  top: 10%;
-  left: 10%;
+  width: 180px;  /* Reduced from 400px */
+  height: 180px; /* Reduced from 400px */
+  background: #8b5cf6;
+  top: 15%;
+  left: 15%;
 }
 
 .circle-2 {
-  width: 450px;
-  height: 450px;
-  background: #3b82f6; /* Accent blue glow */
-  bottom: 10%;
-  right: 10%;
+  width: 200px;  /* Reduced from 450px */
+  height: 200px; /* Reduced from 450px */
+  background: #3b82f6;
+  bottom: 15%;
+  right: 15%;
   animation-delay: -5s;
 }
 
