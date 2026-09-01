@@ -89,7 +89,22 @@ particlesJS("particles-js", {
   }
 });
 
-document.querySelector('.contact-card[data-mailto]').addEventListener('click', function() {
-  const email = this.getAttribute('data-mailto');
-  window.location.href = `mailto:${email}`;
-});
+<a href="mailto:sahananarayana21@gmail.com" onclick="openEmail(event)" class="contact-card" aria-label="Email Sahana">
+  <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Gmail logo">
+  <div>
+    <h4>Gmail</h4>
+    <p>sahananarayana21@gmail.com</p>
+  </div>
+</a>
+
+<script>
+function openEmail(event) {
+  // Check if the user is on a desktop/laptop browser
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  
+  if (!isMobile) {
+    event.preventDefault(); // Stop default mailto: behavior on laptop
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=sahananarayana21@gmail.com', '_blank');
+  }
+}
+</script>
