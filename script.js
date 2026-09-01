@@ -88,3 +88,8 @@ particlesJS("particles-js", {
     move: { enable: true, speed: 2 }
   }
 });
+
+document.querySelector('.contact-card[data-mailto]').addEventListener('click', function() {
+  const email = this.getAttribute('data-mailto');
+  window.location.href = `mailto:${email}`;
+});
