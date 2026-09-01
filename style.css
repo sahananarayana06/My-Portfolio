@@ -668,9 +668,3 @@ body {
     background-position: 0% 50%;
   }
 }
-
-a.contact-card {
-  display: block; /* Or display: flex / inline-block depending on your layout */
-  text-decoration: none;
-  color: inherit;
-}
