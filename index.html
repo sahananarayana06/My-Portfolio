@@ -7,7 +7,6 @@ e<!DOCTYPE html>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -15,6 +14,7 @@ e<!DOCTYPE html>
 
 <body>
 <div class="bg-animation">
+  <canvas id="particle-field" aria-hidden="true"></canvas>
   <div class="circle circle-1"></div>
   <div class="circle circle-2"></div>
 </div>
@@ -34,7 +34,21 @@ e<!DOCTYPE html>
     <div class="circle circle-1"></div>
     <div class="circle circle-2"></div>
 </div>
-  <img src="Profile.png" class="profile-pic" data-aos="zoom-in" data-aos-delay="100">
+  <div class="hero-scene">
+    <div class="hero-orbit hero-orbit--outer" aria-hidden="true"></div>
+    <div class="hero-orbit hero-orbit--inner" aria-hidden="true"></div>
+    <div class="hero-cube" aria-hidden="true">
+      <span class="cube-face cube-face--front">&lt;/&gt;</span>
+      <span class="cube-face cube-face--back">JS</span>
+      <span class="cube-face cube-face--right">{ }</span>
+      <span class="cube-face cube-face--left">CSS</span>
+      <span class="cube-face cube-face--top">&lt;div&gt;</span>
+      <span class="cube-face cube-face--bottom">SQL</span>
+    </div>
+    <span class="hero-chip hero-chip--code" aria-hidden="true">HTML · CSS</span>
+    <span class="hero-chip hero-chip--data" aria-hidden="true">DATA · 01</span>
+    <img src="Profile.png" class="profile-pic" alt="Portrait of Sahana" data-aos="zoom-in" data-aos-delay="100">
+  </div>
   <h1>Hello, I'm <span>Sahana</span></h1>
   <h3>💻 Aspiring Software Developer <br>Passionate about web development, and learning new technologies.</h3>
   <p>Student | Developer |Tech Enthusiast</p>
@@ -261,3 +275,4 @@ troubleshooting. Passionate about learning new technologies and contributing to 
 <script src="script.js"></script>
 </body>
 </html>
+
