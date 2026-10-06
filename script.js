@@ -9,7 +9,7 @@ if (window.AOS) {
 // Semester Details Logic
 function showSemester(sem, btn) {
       const details = document.getElementById('semester-details');
-      document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('#education .semester-buttons .btn').forEach(b => b.classList.remove('active'));
       if(btn) btn.classList.add('active');
 
       let content = '';
@@ -254,6 +254,50 @@ if (galleryCanTilt) {
       card.style.setProperty('--card-tilt-y', '0deg');
       card.style.setProperty('--shine-x', '50%');
       card.style.setProperty('--shine-y', '50%');
+    });
+  });
+
+  const educationCard = document.querySelector('#education .timeline-item');
+  if (educationCard) {
+    educationCard.addEventListener('pointermove', (event) => {
+      const bounds = educationCard.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      educationCard.style.setProperty('--education-tilt-x', `${((0.5 - y) * 5).toFixed(2)}deg`);
+      educationCard.style.setProperty('--education-tilt-y', `${((x - 0.5) * 7).toFixed(2)}deg`);
+    });
+
+    educationCard.addEventListener('pointerleave', () => {
+      educationCard.style.setProperty('--education-tilt-x', '0deg');
+      educationCard.style.setProperty('--education-tilt-y', '0deg');
+    });
+  }
+}
+
+
+// Contact links and message form get subtle 3D depth on mouse/trackpad devices.
+if (galleryCanTilt) {
+  const contactTargets = [
+    ...document.querySelectorAll('#contact .contact-card'),
+    document.querySelector('#contact .contact-form')
+  ].filter(Boolean);
+
+  contactTargets.forEach((target) => {
+    target.addEventListener('pointermove', (event) => {
+      const bounds = target.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      target.style.setProperty('--contact-tilt-x', `${((0.5 - y) * 6).toFixed(2)}deg`);
+      target.style.setProperty('--contact-tilt-y', `${((x - 0.5) * 8).toFixed(2)}deg`);
+      target.style.setProperty('--contact-glow-x', `${(x * 100).toFixed(1)}%`);
+      target.style.setProperty('--contact-glow-y', `${(y * 100).toFixed(1)}%`);
+    });
+
+    target.addEventListener('pointerleave', () => {
+      target.style.setProperty('--contact-tilt-x', '0deg');
+      target.style.setProperty('--contact-tilt-y', '0deg');
+      target.style.setProperty('--contact-glow-x', '50%');
+      target.style.setProperty('--contact-glow-y', '50%');
     });
   });
 }
