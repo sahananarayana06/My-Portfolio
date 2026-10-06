@@ -940,6 +940,290 @@ body {
   }
 }
 
+/* Education timeline: glowing milestone rail and a floating 3D BCA emblem */
+#education .timeline {
+  position: relative;
+  max-width: 910px;
+  padding-left: 68px;
+  perspective: 1200px;
+}
+
+#education .timeline::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 25px;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, rgba(177, 132, 255, 0.9) 14%, rgba(78, 168, 255, 0.8) 82%, transparent);
+  box-shadow: 0 0 18px rgba(140, 69, 255, 0.6);
+}
+
+#education .timeline-item {
+  --education-tilt-x: 0deg;
+  --education-tilt-y: 0deg;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  padding: 36px;
+  border: 1px solid rgba(180, 145, 255, 0.26);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(35, 24, 66, 0.84), rgba(12, 20, 44, 0.82) 70%);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  text-align: left;
+  transform: perspective(1200px) rotateX(var(--education-tilt-x)) rotateY(var(--education-tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 220ms ease-out, box-shadow 280ms ease, border-color 280ms ease;
+  will-change: transform;
+}
+
+#education .timeline-item::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  top: 50px;
+  left: -55px;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #d9c3ff;
+  border-radius: 50%;
+  background: #8c45ff;
+  box-shadow: 0 0 0 7px rgba(140, 69, 255, 0.14), 0 0 24px rgba(172, 124, 255, 0.88);
+  transform: translateZ(26px);
+}
+
+#education .timeline-item:hover {
+  border-color: rgba(190, 157, 255, 0.55);
+  box-shadow: 0 30px 68px rgba(27, 13, 64, 0.4), 0 0 32px rgba(140, 69, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#education .timeline-item > h3 {
+  max-width: calc(100% - 158px);
+  margin: 0 0 14px;
+  color: #d8c1ff;
+  font-size: clamp(1.08rem, 2.3vw, 1.4rem);
+  line-height: 1.35;
+  transform: translateZ(22px);
+}
+
+#education .timeline-item > p {
+  position: relative;
+  z-index: 1;
+  max-width: calc(100% - 132px);
+  margin-bottom: 10px;
+  line-height: 1.65;
+  transform: translateZ(15px);
+}
+
+#education .timeline-item > p strong {
+  color: #f0e8ff;
+}
+
+#education .timeline-item > .muted {
+  color: #bca8e8;
+  letter-spacing: 0.08em;
+}
+
+.education-hologram {
+  position: absolute;
+  z-index: 3;
+  top: 18px;
+  right: 27px;
+  width: 146px;
+  height: 146px;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.education-orbit {
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(177, 143, 255, 0.52);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: education-orbit-spin 15s linear infinite;
+}
+
+.education-orbit--outer {
+  transform: rotateX(67deg) rotateZ(-26deg);
+}
+
+.education-orbit--inner {
+  inset: 25px;
+  border-style: dashed;
+  border-color: rgba(111, 196, 255, 0.45);
+  animation-direction: reverse;
+  animation-duration: 19s;
+  transform: rotateX(70deg) rotateY(24deg) rotateZ(18deg);
+}
+
+.education-satellite {
+  position: absolute;
+  top: 18px;
+  right: 34px;
+  z-index: 4;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #85d2ff;
+  box-shadow: 0 0 18px 5px rgba(105, 186, 255, 0.58);
+  animation: education-satellite-float 4s ease-in-out infinite;
+}
+
+.education-cube {
+  position: absolute;
+  top: 47px;
+  left: 47px;
+  width: 52px;
+  height: 52px;
+  transform-style: preserve-3d;
+  animation: education-cube-spin 13s ease-in-out infinite;
+}
+
+.education-cube-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(205, 180, 255, 0.75);
+  background: linear-gradient(145deg, rgba(140, 69, 255, 0.56), rgba(46, 88, 166, 0.48));
+  color: #f2eaff;
+  font: 600 0.62rem/1 'Poppins', sans-serif;
+  letter-spacing: 0.05em;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.education-cube-face--front { transform: translateZ(26px); }
+.education-cube-face--back { transform: rotateY(180deg) translateZ(26px); }
+.education-cube-face--right { transform: rotateY(90deg) translateZ(26px); }
+.education-cube-face--left { transform: rotateY(-90deg) translateZ(26px); }
+.education-cube-face--top { transform: rotateX(90deg) translateZ(26px); }
+.education-cube-face--bottom { transform: rotateX(-90deg) translateZ(26px); }
+
+.education-year-badge {
+  position: absolute;
+  top: 145px;
+  right: 34px;
+  z-index: 4;
+  padding: 6px 11px;
+  border: 1px solid rgba(174, 144, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(13, 12, 32, 0.72);
+  color: #cdb7ff;
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+  transform: translateZ(34px);
+}
+
+#education .semester-buttons {
+  position: relative;
+  z-index: 2;
+  justify-content: flex-start;
+  gap: 12px;
+  margin: 24px 0;
+  transform: translateZ(20px);
+}
+
+#education .semester-buttons .btn {
+  border: 1px solid rgba(181, 145, 255, 0.34);
+  background: rgba(37, 28, 68, 0.78);
+  color: #e7dcff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+#education .semester-buttons .btn:hover {
+  transform: translateY(-4px) rotateX(10deg) rotateY(-5deg);
+  box-shadow: 0 12px 24px rgba(88, 48, 164, 0.28);
+}
+
+#education .semester-buttons .btn.active {
+  border-color: rgba(212, 190, 255, 0.76);
+  background: linear-gradient(135deg, #a970ff, #7442dc);
+  color: #fff;
+}
+
+#education #semester-details {
+  border-color: rgba(144, 119, 203, 0.28);
+  background: linear-gradient(145deg, rgba(22, 25, 53, 0.84), rgba(16, 17, 37, 0.82));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateZ(16px);
+}
+
+@keyframes education-orbit-spin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes education-cube-spin {
+  0%, 100% { transform: rotateX(-18deg) rotateY(-28deg) translateY(0); }
+  50% { transform: rotateX(24deg) rotateY(152deg) translateY(-5px); }
+}
+
+@keyframes education-satellite-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: -7px 8px; }
+}
+
+@media (max-width: 768px) {
+  #education .timeline {
+    padding-left: 34px;
+  }
+
+  #education .timeline::before {
+    left: 11px;
+  }
+
+  #education .timeline-item {
+    padding: 25px 20px;
+    border-radius: 20px;
+  }
+
+  #education .timeline-item::before {
+    left: -33px;
+    top: 42px;
+    width: 15px;
+    height: 15px;
+  }
+
+  #education .timeline-item > h3 {
+    max-width: calc(100% - 104px);
+    font-size: 1.05rem;
+  }
+
+  #education .timeline-item > p {
+    max-width: calc(100% - 84px);
+    font-size: 0.87rem;
+  }
+
+  .education-hologram {
+    top: 16px;
+    right: 10px;
+    scale: 0.72;
+    transform-origin: top right;
+  }
+
+  .education-year-badge {
+    top: 118px;
+    right: 12px;
+    padding: 5px 8px;
+    font-size: 0.58rem;
+  }
+
+  #education .semester-buttons {
+    gap: 8px;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  #education .timeline-item,
+  #education .timeline-item:hover {
+    transform: none;
+    will-change: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   #particle-field {
     opacity: 0.42;
@@ -958,5 +1242,221 @@ body {
   .project-card .tech-stack,
   .project-card .project-links {
     transform: none;
+  }
+}
+
+
+/* Floating portrait avatar and animated 3D contact area */
+.avatar-backplate {
+  position: absolute;
+  z-index: 1;
+  width: clamp(156px, 19vw, 192px);
+  height: clamp(156px, 19vw, 192px);
+  border: 1px solid rgba(205, 174, 255, 0.72);
+  border-radius: 50%;
+  background: conic-gradient(from 25deg, rgba(153, 97, 255, 0.2), rgba(76, 181, 255, 0.04), rgba(184, 125, 255, 0.24), rgba(153, 97, 255, 0.2));
+  box-shadow: 0 0 32px rgba(140, 69, 255, 0.24), inset 0 0 28px rgba(139, 92, 246, 0.12);
+  transform: translateZ(10px) rotateX(12deg) rotateY(-12deg);
+  animation: avatar-backplate-spin 16s linear infinite;
+  pointer-events: none;
+}
+
+.hero-scene .profile-pic {
+  animation: avatar-float 5.8s ease-in-out infinite;
+}
+
+@keyframes avatar-float {
+  0%, 100% { transform: translate3d(0, 0, 24px) rotateY(-3deg); }
+  50% { transform: translate3d(0, -9px, 38px) rotateY(3deg); }
+}
+
+@keyframes avatar-backplate-spin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+#contact .contact-card {
+  --contact-tilt-x: 0deg;
+  --contact-tilt-y: 0deg;
+  --contact-glow-x: 50%;
+  --contact-glow-y: 50%;
+  position: relative;
+  transform: perspective(950px) rotateX(var(--contact-tilt-x)) rotateY(var(--contact-tilt-y));
+  transform-style: preserve-3d;
+  will-change: transform;
+  border-color: rgba(174, 144, 255, 0.25);
+  background: linear-gradient(135deg, rgba(44, 30, 76, 0.74), rgba(17, 23, 48, 0.78));
+  transition: transform 180ms ease-out, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+#contact .contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--contact-glow-x) var(--contact-glow-y), rgba(174, 136, 255, 0.24), transparent 62%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  transform: translateZ(1px);
+}
+
+#contact .contact-card:hover,
+#contact .contact-card:focus-visible {
+  transform: perspective(950px) rotateX(var(--contact-tilt-x)) rotateY(var(--contact-tilt-y)) translateY(-7px);
+  border-color: rgba(197, 170, 255, 0.62);
+  box-shadow: 0 20px 42px rgba(25, 13, 61, 0.42), 0 0 30px rgba(140, 69, 255, 0.22);
+}
+
+#contact .contact-card:hover::before,
+#contact .contact-card:focus-visible::before {
+  opacity: 1;
+}
+
+#contact .contact-card > img {
+  position: relative;
+  z-index: 1;
+  transform: translateZ(22px);
+  transition: transform 220ms ease;
+}
+
+#contact .contact-card > div {
+  position: relative;
+  z-index: 1;
+  transform: translateZ(14px);
+}
+
+#contact .contact-card:hover > img {
+  transform: translateZ(32px) scale(1.08) rotateY(-8deg);
+}
+
+#contact .contact-card:focus-visible {
+  outline: 2px solid rgba(201, 177, 255, 0.82);
+  outline-offset: 4px;
+}
+
+#contact .contact-form {
+  --contact-tilt-x: 0deg;
+  --contact-tilt-y: 0deg;
+  --contact-glow-x: 50%;
+  --contact-glow-y: 50%;
+  position: relative;
+  isolation: isolate;
+  transform: perspective(1250px) rotateX(var(--contact-tilt-x)) rotateY(var(--contact-tilt-y));
+  transform-style: preserve-3d;
+  will-change: transform;
+  border: 1px solid rgba(166, 128, 255, 0.46);
+  background: linear-gradient(145deg, rgba(22, 20, 47, 0.94), rgba(8, 14, 32, 0.91));
+  box-shadow: 0 28px 75px rgba(0, 0, 0, 0.32), 0 0 42px rgba(96, 72, 220, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  transition: transform 200ms ease-out, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+#contact .contact-form::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, rgba(140, 69, 255, 0.06), rgba(84, 174, 255, 0.65), rgba(183, 116, 255, 0.72), rgba(140, 69, 255, 0.08));
+  filter: blur(20px);
+  opacity: 0.4;
+  animation: contact-aura 12s linear infinite;
+}
+
+#contact .contact-form::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--contact-glow-x) var(--contact-glow-y), rgba(138, 111, 255, 0.16), transparent 55%);
+  pointer-events: none;
+}
+
+#contact .contact-form > * {
+  position: relative;
+  z-index: 1;
+  transform: translateZ(14px);
+}
+
+#contact .contact-form:focus-within {
+  border-color: rgba(184, 156, 255, 0.82);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.36), 0 0 48px rgba(140, 69, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#contact .contact-form .form-header .icon {
+  background: linear-gradient(145deg, #ad75ff, #6f40dd);
+  box-shadow: 0 8px 28px rgba(140, 69, 255, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform-style: preserve-3d;
+  animation: contact-icon-float 4.8s ease-in-out infinite;
+}
+
+#contact .contact-form input,
+#contact .contact-form textarea {
+  background: rgba(8, 12, 29, 0.46);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+#contact .contact-form input:focus,
+#contact .contact-form textarea:focus {
+  transform: translateZ(22px);
+  border-color: rgba(173, 139, 255, 0.82);
+  background: rgba(25, 22, 53, 0.82);
+  box-shadow: 0 0 0 3px rgba(140, 69, 255, 0.14), 0 10px 26px rgba(0, 0, 0, 0.24);
+}
+
+#contact .contact-form button {
+  background: linear-gradient(110deg, #a260ff, #7544dd 55%, #506ff4);
+  color: #fff;
+  box-shadow: 0 10px 28px rgba(109, 66, 220, 0.26);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+#contact .contact-form button:hover,
+#contact .contact-form button:focus-visible {
+  transform: translateY(-3px) rotateX(7deg);
+  box-shadow: 0 16px 34px rgba(109, 66, 220, 0.42);
+  filter: brightness(1.08);
+}
+
+@keyframes contact-aura {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes contact-icon-float {
+  0%, 100% { transform: translateY(0) rotateY(-8deg); }
+  50% { transform: translateY(-6px) rotateY(8deg); }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  #contact .contact-card,
+  #contact .contact-card:hover,
+  #contact .contact-form,
+  #contact .contact-form:hover {
+    transform: none;
+    will-change: auto;
+  }
+
+  #contact .contact-card > img,
+  #contact .contact-card > div,
+  #contact .contact-form > * {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .avatar-backplate {
+    width: 146px;
+    height: 146px;
+  }
+
+  #contact .contact-cards {
+    gap: 16px;
+  }
+
+  #contact .contact-card {
+    min-width: min(100%, 240px);
   }
 }
