@@ -1,4 +1,10 @@
-AOS.init();
+if (window.AOS) {
+  AOS.init({
+    duration: 700,
+    once: true,
+    disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  });
+}
 
 // Semester Details Logic
 function showSemester(sem, btn) {
@@ -80,11 +86,174 @@ document.querySelectorAll('.show-more').forEach(button => {
 
 emailjs.init('9pkuBI_6vudizlI6E');
 
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 60 },
-    color: { value: "#8b5cf6" },
-    line_linked: { enable: true, distance: 150, color: "#8b5cf6", opacity: 0.3, width: 1 },
-    move: { enable: true, speed: 2 }
-  }
-});
+// Give the hero a restrained 3D response on mouse/trackpad without affecting touch users.
+const heroScene = document.querySelector('.hero-scene');
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (heroScene && finePointer && !reducedMotion) {
+  let frame = null;
+
+  heroScene.addEventListener('pointermove', (event) => {
+    const bounds = heroScene.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      heroScene.style.setProperty('--scene-rotate-x', `${(-y * 9).toFixed(2)}deg`);
+      heroScene.style.setProperty('--scene-rotate-y', `${(x * 12).toFixed(2)}deg`);
+    });
+  });
+
+  heroScene.addEventListener('pointerleave', () => {
+    if (frame) cancelAnimationFrame(frame);
+    heroScene.style.setProperty('--scene-rotate-x', '0deg');
+    heroScene.style.setProperty('--scene-rotate-y', '0deg');
+  });
+}
+
+// A subtle particle field that links nearby points and gently responds to the pointer.
+const particleCanvas = document.getElementById('particle-field');
+const particleContext = particleCanvas && particleCanvas.getContext('2d');
+
+if (particleContext) {
+  let canvasWidth = 0;
+  let canvasHeight = 0;
+  let particles = [];
+  let pointer = { x: -1000, y: -1000, active: false };
+  let animationFrame = null;
+
+  const resizeParticleField = () => {
+    canvasWidth = window.innerWidth;
+    canvasHeight = window.innerHeight;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    particleCanvas.width = Math.round(canvasWidth * pixelRatio);
+    particleCanvas.height = Math.round(canvasHeight * pixelRatio);
+    particleContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+    const count = Math.min(48, Math.max(16, Math.floor((canvasWidth * canvasHeight) / 28000)));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * canvasWidth,
+      y: Math.random() * canvasHeight,
+      vx: (Math.random() - 0.5) * 0.32,
+      vy: (Math.random() - 0.5) * 0.32,
+      radius: 0.8 + Math.random() * 1.3
+    }));
+  };
+
+  const drawParticleField = () => {
+    animationFrame = null;
+    particleContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    particles.forEach((particle, index) => {
+      if (!reducedMotion) {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        if (particle.x < 0 || particle.x > canvasWidth) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvasHeight) particle.vy *= -1;
+
+        if (pointer.active) {
+          const dx = particle.x - pointer.x;
+          const dy = particle.y - pointer.y;
+          const distance = Math.hypot(dx, dy);
+          if (distance > 0 && distance < 86) {
+            const force = (86 - distance) / 86 * 0.012;
+            particle.x += dx / distance * force * 10;
+            particle.y += dy / distance * force * 10;
+          }
+        }
+      }
+
+      particleContext.beginPath();
+      particleContext.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      particleContext.fillStyle = 'rgba(196, 164, 255, 0.78)';
+      particleContext.fill();
+
+      for (let otherIndex = index + 1; otherIndex < particles.length; otherIndex += 1) {
+        const other = particles[otherIndex];
+        const dx = particle.x - other.x;
+        const dy = particle.y - other.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance < 126) {
+          particleContext.beginPath();
+          particleContext.moveTo(particle.x, particle.y);
+          particleContext.lineTo(other.x, other.y);
+          particleContext.strokeStyle = `rgba(143, 105, 235, ${(1 - distance / 126) * 0.22})`;
+          particleContext.lineWidth = 0.7;
+          particleContext.stroke();
+        }
+      }
+
+      if (pointer.active) {
+        const distanceToPointer = Math.hypot(particle.x - pointer.x, particle.y - pointer.y);
+        if (distanceToPointer < 150) {
+          particleContext.beginPath();
+          particleContext.moveTo(particle.x, particle.y);
+          particleContext.lineTo(pointer.x, pointer.y);
+          particleContext.strokeStyle = `rgba(116, 200, 255, ${(1 - distanceToPointer / 150) * 0.32})`;
+          particleContext.lineWidth = 0.8;
+          particleContext.stroke();
+        }
+      }
+    });
+
+    if (!reducedMotion && !document.hidden) {
+      animationFrame = requestAnimationFrame(drawParticleField);
+    }
+  };
+
+  const scheduleParticleDraw = () => {
+    if (animationFrame !== null) return;
+    if (reducedMotion) drawParticleField();
+    else animationFrame = requestAnimationFrame(drawParticleField);
+  };
+
+  resizeParticleField();
+  scheduleParticleDraw();
+  window.addEventListener('resize', () => {
+    resizeParticleField();
+    scheduleParticleDraw();
+  }, { passive: true });
+  window.addEventListener('pointermove', (event) => {
+    if (!finePointer) return;
+    pointer = { x: event.clientX, y: event.clientY, active: true };
+    if (reducedMotion) scheduleParticleDraw();
+  }, { passive: true });
+  window.addEventListener('pointerleave', () => {
+    pointer.active = false;
+    if (reducedMotion) scheduleParticleDraw();
+  }, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && animationFrame !== null) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = null;
+    } else if (!document.hidden) {
+      scheduleParticleDraw();
+    }
+  });
+}
+
+// Pointer tilt and a matching light highlight turn the project cards into a 3D gallery.
+const galleryCanTilt = finePointer && !reducedMotion && window.matchMedia('(hover: hover)').matches;
+
+if (galleryCanTilt) {
+  document.querySelectorAll('.project-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      card.style.setProperty('--card-tilt-x', `${((0.5 - y) * 9).toFixed(2)}deg`);
+      card.style.setProperty('--card-tilt-y', `${((x - 0.5) * 10).toFixed(2)}deg`);
+      card.style.setProperty('--shine-x', `${(x * 100).toFixed(1)}%`);
+      card.style.setProperty('--shine-y', `${(y * 100).toFixed(1)}%`);
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--card-tilt-x', '0deg');
+      card.style.setProperty('--card-tilt-y', '0deg');
+      card.style.setProperty('--shine-x', '50%');
+      card.style.setProperty('--shine-y', '50%');
+    });
+  });
+}
