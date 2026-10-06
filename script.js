@@ -36,7 +36,7 @@ function showSemester(sem, btn) {
       details.innerHTML = content;
     }
 
-    showSemester(6, document.querySelectorAll('.btn')[6]);
+    showSemester(6, document.getElementById('semester-6-button'));
 
 // Contact Form Handler
 document.getElementById('contact-form').addEventListener('submit', function(event) {
